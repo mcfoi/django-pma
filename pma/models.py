@@ -80,7 +80,7 @@ class Monit(models.Model):
 
 
 class Par(models.Model):
-    id = models.AutoField()
+    #id = models.AutoField()
     par = models.TextField()
     unit = models.TextField(blank=True, null=True)
     matr = models.TextField()
