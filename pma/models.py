@@ -13,15 +13,16 @@ from django.contrib.gis.db import models
 
 
 class Camp(models.Model):
-    id_camp = models.CharField(unique=True, max_length=7)
-    codice_p = models.ForeignKey('Sito', db_column='codice_p')
+    cod_camp = models.CharField(unique=True, max_length=7)
+    codice_p = models.CharField(max_length=13)
     data_c = models.DateTimeField(blank=True, null=True)
     data_r = models.DateTimeField(blank=True, null=True)
     monit = models.ForeignKey('Monit', db_column='monit')
     quota_f = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
     note = models.TextField(blank=True, null=True)
-    id_sito = models.IntegerField()
+    id_sito = models.ForeignKey('Sito', db_column='id_sito')
     nr = models.IntegerField()
+    data_cons = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -29,7 +30,7 @@ class Camp(models.Model):
 
 
 class Forn(models.Model):
-    forn = models.TextField(unique=True)
+    forn = models.TextField()
 
     class Meta:
         managed = False
@@ -37,8 +38,8 @@ class Forn(models.Model):
 
 
 class FornCamp(models.Model):
+    id_forn = models.ForeignKey(Forn, db_column='id_forn')
     id_camp = models.ForeignKey(Camp, db_column='id_camp')
-    forn = models.ForeignKey(Forn, db_column='forn')
 
     class Meta:
         managed = False
@@ -46,8 +47,7 @@ class FornCamp(models.Model):
 
 
 class Lim(models.Model):
-    id_par = models.ForeignKey('Par', db_column='id_par')
-    par = models.TextField()
+    id_par = models.IntegerField()
     acc = models.DecimalField(max_digits=5, decimal_places=3, blank=True, null=True)
     mdl = models.DecimalField(max_digits=6, decimal_places=4, blank=True, null=True)
     metodo = models.TextField(blank=True, null=True)
@@ -61,8 +61,9 @@ class Lim(models.Model):
 class M(models.Model):
     n_val = models.DecimalField(max_digits=11, decimal_places=6, blank=True, null=True)
     id_prof = models.ForeignKey('Prof', db_column='id_prof')
-    id_par = models.ForeignKey('Par', db_column='id_par', unique=True)
+    id_par = models.IntegerField()
     t_val = models.TextField(blank=True, null=True)
+    id_forn = models.ForeignKey(Forn, db_column='id_forn')
 
     class Meta:
         managed = False
@@ -79,7 +80,7 @@ class Monit(models.Model):
 
 
 class Par(models.Model):
-    id = models.AutoField(unique=True)
+    id = models.AutoField()
     par = models.TextField()
     unit = models.TextField(blank=True, null=True)
     matr = models.TextField()
@@ -95,7 +96,7 @@ class Par(models.Model):
 class Prof(models.Model):
     prof = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
     note = models.TextField(blank=True, null=True)
-    id_camp = models.ForeignKey(Camp, db_column='id_camp', blank=True, null=True)
+    id_camp = models.ForeignKey(Camp, db_column='id_camp')
 
     class Meta:
         managed = False
