@@ -107,7 +107,7 @@ class Punto(models.Model):
     codice = models.CharField(primary_key=True, max_length=13)
     data_r = models.DateTimeField(blank=True, null=True)
     geom = models.PointField(srid=102092, blank=True, null=True)
-    id = models.AutoField()
+    #id = models.AutoField()
     objects = models.GeoManager()
 
     class Meta:

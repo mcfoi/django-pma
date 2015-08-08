@@ -6,4 +6,4 @@ set "PATH=%VIRTUAL_ENV%\Scripts;%PATH%"
 reg ADD "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v Path /t REG_EXPAND_SZ /f /d "%PATH%"
 reg ADD "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v GDAL_DATA /t REG_EXPAND_SZ /f /d "%GDAL_DATA%"
 reg ADD "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v PROJ_LIB /t REG_EXPAND_SZ /f /d "%PROJ_LIB%"
-<virtualenv>Scripts\activate.bat
+c:\Users\mcfoi\Dropbox\PythonVirtualEnv\Django\pma\Scripts\activate.bat
