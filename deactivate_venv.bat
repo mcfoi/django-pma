@@ -1,1 +1,1 @@
-c:\Users\mcfoi\Dropbox\PythonVirtualEnv\pma\Scripts\deactivate.bat
+<virtualenv_root>Scripts\deactivate.bat
