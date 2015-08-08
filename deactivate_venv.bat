@@ -1,1 +1,1 @@
-<virtualenv_root>Scripts\deactivate.bat
+c:\Users\mcfoi\Dropbox\PythonVirtualEnv\Django\pma\Scripts\deactivate.bat
