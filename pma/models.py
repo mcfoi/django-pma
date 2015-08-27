@@ -17,12 +17,12 @@ class Camp(models.Model):
     codice_p = models.CharField(max_length=13)
     data_c = models.DateTimeField(blank=True, null=True)
     data_r = models.DateTimeField(blank=True, null=True)
-    monit = models.ForeignKey('Monit', db_column='monit')
     quota_f = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
     note = models.TextField(blank=True, null=True)
     id_sito = models.ForeignKey('Sito', db_column='id_sito')
     nr = models.IntegerField()
     data_cons = models.DateTimeField(blank=True, null=True)
+    id_monit = models.ForeignKey('Monit', db_column='id_monit')
 
     class Meta:
         managed = False
@@ -47,7 +47,7 @@ class FornCamp(models.Model):
 
 
 class Lim(models.Model):
-    id_par = models.IntegerField()
+    id_par = models.ForeignKey('Par', db_column='id_par')
     acc = models.DecimalField(max_digits=5, decimal_places=3, blank=True, null=True)
     mdl = models.DecimalField(max_digits=6, decimal_places=4, blank=True, null=True)
     metodo = models.TextField(blank=True, null=True)
@@ -61,7 +61,7 @@ class Lim(models.Model):
 class M(models.Model):
     n_val = models.DecimalField(max_digits=11, decimal_places=6, blank=True, null=True)
     id_prof = models.ForeignKey('Prof', db_column='id_prof')
-    id_par = models.IntegerField()
+    id_par = models.ForeignKey('Par', db_column='id_par')
     t_val = models.TextField(blank=True, null=True)
     id_forn = models.ForeignKey(Forn, db_column='id_forn')
 
@@ -80,7 +80,6 @@ class Monit(models.Model):
 
 
 class Par(models.Model):
-    #id = models.AutoField()
     par = models.TextField()
     unit = models.TextField(blank=True, null=True)
     matr = models.TextField()
@@ -90,7 +89,6 @@ class Par(models.Model):
     class Meta:
         managed = False
         db_table = 'par'
-        unique_together = (('id', 'par', 'matr'),)
 
 
 class Prof(models.Model):
@@ -107,7 +105,6 @@ class Punto(models.Model):
     codice = models.CharField(primary_key=True, max_length=13)
     data_r = models.DateTimeField(blank=True, null=True)
     geom = models.PointField(srid=102092, blank=True, null=True)
-    #id = models.AutoField()
     objects = models.GeoManager()
 
     class Meta:
