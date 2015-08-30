@@ -11,7 +11,3 @@ INSTALLED_APPS += ("debug_toolbar", )
 # django-extensions
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += ('django_extensions', )
-
-# pma
-# ------------------------------------------------------------------------------
-INSTALLED_APPS += ('pma', )
