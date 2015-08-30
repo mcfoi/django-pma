@@ -100,12 +100,17 @@ class Prof(models.Model):
         managed = False
         db_table = 'prof'
 
-
+# GeoDjango-specific: a geometry field (PointField), and
+# overriding the default manager with a GeoManager instance.
 class Punto(models.Model):
     codice = models.CharField(primary_key=True, max_length=13)
     data_r = models.DateTimeField(blank=True, null=True)
     geom = models.PointField(srid=102092, blank=True, null=True)
     objects = models.GeoManager()
+    
+    # Returns the string representation of the model.
+    def __unicode__(self):              # __str__ on Python 3
+        return self.codice
 
     class Meta:
         managed = False
