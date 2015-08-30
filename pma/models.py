@@ -110,7 +110,7 @@ class Punto(models.Model):
     
     # Returns the string representation of the model.
     def __unicode__(self):              # __str__ on Python 3
-        return self.codice
+        return self.codice + " - " + self.data_r.strftime('%Y-%m-%d %H:%M')
 
     class Meta:
         managed = False
@@ -118,7 +118,8 @@ class Punto(models.Model):
 
 
 class Sito(models.Model):
-    codice = models.ForeignKey(Punto, db_column='codice', unique=True)
+    #codice = models.ForeignKey(Punto, db_column='codice', unique=True)
+    codice = models.OneToOneField(Punto, db_column='codice', unique=True)
     descr = models.TextField(blank=True, null=True)
     pma = models.IntegerField()
     y = models.DecimalField(max_digits=10, decimal_places=3)
@@ -129,6 +130,10 @@ class Sito(models.Model):
     foto = models.TextField(blank=True, null=True)
     log = models.TextField(blank=True, null=True)
     info = models.TextField(blank=True, null=True)
+    
+    # Returns the string representation of the model.
+    def __unicode__(self):              # __str__ on Python 3
+        return self.descr + " - Punto: " + self.codice.codice
 
     class Meta:
         managed = False
