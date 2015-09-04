@@ -9,6 +9,7 @@ with the actual path (e.g.: c:\Users\mcfoi\Dropbox\PythonVirtualEnv\Django\pma\ 
 *Activate it by calling:
     activate_venv.bat
 *Install GDAL libraries (in Windows use OSGEO4Win.exe with Easy WebGIS Install)
+
 *Install Postgresql
     easy_install psycopg2-2.6.1.win32-py2.7-pg9.4.4-release
 *Start server with:
